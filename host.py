@@ -31,38 +31,7 @@ def clear_screen():
     else:  # Linux and macOS
         os.system('clear')
 
-def handle_input():
-    global enable_keyboard
-    global enable_move
-    global enable_click
-    global user
-    global pc
-    global current_fps
-
-    while True:
-        print(f'###CONTROL: {user} | {pc}\n')
-        print("Press 'k' for keyboard, 'm' for move, 'c' for click, or enter a number for FPS.")
-        print(f'\nMouse Move: {enable_move}\nMouse Click: {enable_click}\nKeyboard: {enable_keyboard}\nFPS: {current_fps}\n')
-        key = input("Press: ")
-        if key == 'k':
-            enable_keyboard = not enable_keyboard
-            clear_screen()
-        elif key == 'm':
-            enable_move = not enable_move
-            clear_screen()
-        elif key == 'c':
-            enable_click = not enable_click
-            clear_screen()
-        elif key == 'x':
-            clear_screen()
-        else:
-            try:
-                current_fps = int(key)
-            except: pass
-
-# Start a separate thread to handle user input
-input_thread = threading.Thread(target=handle_input)
-input_thread.daemon = True
+# Removed handle_input function and input_thread
 
 @sio.event
 def connect():
@@ -78,7 +47,6 @@ def on_control_id(data):
     pc = data
 
     sio.emit('host_info', [pc, user])
-    input_thread.start()
 
 @sio.on('host')
 def on_host(data):
