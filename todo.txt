@@ -1,0 +1,10 @@
+Host
+-change mouse klik to use microcontroller
+-try mouse move with microccontroller
+-fix keyboard cant type capital 
+
+Client
+-reove pc selection and password input page
+-use apikey on get param as authentication system
+-add fps configuration on get param
+-try embed web
