@@ -1,24 +1,14 @@
-ok-change mouse klik to use microcontroller
-ok-try mouse move with microccontroller, win32 api can handle it
-ok-fix keyboard cant type capital 
-
-ok- add enter function on keyboard   
-ok- add right clilck function on mouse
-ok- add backspace+escape function on keyboard
-
-
-
-
-#Improvement
-- add socket server on host.py, and add webserver for view
-i dont want index.js, since this program is used by 1 host 1 client
--remove pc selection and password input page, (related to above)
--use apikey on get param as authentication system
--add fps configuration on get param
--try embed web
+- change the alogritma of socket, this index.js currenly can have multiple host, i need just 1 host
+    add socket server on host.py, and add webserver for view 
+    i dont want index.js, since this program is used by 1 host 1 client
+-remove (index.html) pc selection and password input page, (related to above)
+-add apikey on url param as authentication 
+-add fps configuration on url param
 -add pip requirement.txt file
--add setup.bat
-=add start.bat
--add config.ini the value is password/apikey
+-add compile this program to .exe
+    create build.bat (refrence on potatolite bot)
+-add config.ini the value is password/apikey, host and port
+    ask in console if not valid or empty
+    auto move port if used (n+10 logic)
 
  
