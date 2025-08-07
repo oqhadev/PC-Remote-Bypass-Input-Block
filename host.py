@@ -5,6 +5,7 @@ import io
 from time import sleep
 import threading
 import os
+import serial
 
 # Connect to the Node.js server
 sio = socketio.Client()
@@ -21,6 +22,13 @@ enable_keyboard = True
 current_fps = 5 
 
 fps = lambda fps: 1/60 if fps > 60 else (1 if fps < 1 else 1/fps)
+
+
+
+serialPort = serial.Serial(
+    port='COM8', baudrate=9600, bytesize=8, timeout=2, stopbits=serial.STOPBITS_ONE
+)
+
 
 def clear_screen():
     """
@@ -81,12 +89,19 @@ def on_remote_control(data):
             x, y = data['x'], data['y']
             button = data['button']
             if button == 'left':
-                pyautogui.click(x, y, button='left')
+                serialPort.write(b"klik\r\n")
+                # pyautogui.click(x, y, button='left')
             elif button == 'right':
                 pyautogui.click(x, y, button='right')
         elif control_type == 'keypress' and enable_keyboard:
             key = data['key']
-            pyautogui.press(key)
+            print(key)
+            if len(key) == 1:
+                serialPort.write(f"write {key}\r\n".encode('utf-8'))
+            if key == 'Enter':
+                serialPort.write(b"enter\r\n")
+
+            # pyautogui.press(key)
 
 def capture_screen():    
     while True:
