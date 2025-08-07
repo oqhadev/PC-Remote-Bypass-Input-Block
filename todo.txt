@@ -1,4 +1,3 @@
-Host
 ok-change mouse klik to use microcontroller
 ok-try mouse move with microccontroller, win32 api can handle it
 ok-fix keyboard cant type capital 
@@ -11,8 +10,15 @@ ok- add backspace+escape function on keyboard
 
 
 #Improvement
-Client
--reove pc selection and password input page
+- add socket server on host.py, and add webserver for view
+i dont want index.js, since this program is used by 1 host 1 client
+-remove pc selection and password input page, (related to above)
 -use apikey on get param as authentication system
 -add fps configuration on get param
 -try embed web
+-add pip requirement.txt file
+-add setup.bat
+=add start.bat
+-add config.ini the value is password/apikey
+
+ 

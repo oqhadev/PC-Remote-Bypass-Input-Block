@@ -30,16 +30,6 @@ serialPort = serial.Serial(
 )
 
 
-def clear_screen():
-    """
-    Clears the screen based on the operating system.
-    """
-    if os.name == 'nt':  # Windows
-        os.system('cls')
-    else:  # Linux and macOS
-        os.system('clear')
-
-# Removed handle_input function and input_thread
 
 @sio.event
 def connect():

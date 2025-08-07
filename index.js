@@ -33,10 +33,6 @@ io.on("connection", (socket) => {
     io.to(data.to).emit("screen_share", data);
   });
 
-  // Emit audio share data to the client
-  socket.on("audio_share", (data) => {
-    io.to(data.to).emit("audio_share", data);
-  });
 
   // Handle remote control events
   socket.on("remote_control", (data) => {
