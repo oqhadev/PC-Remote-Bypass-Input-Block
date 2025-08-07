@@ -70,23 +70,6 @@
         }
       });
 
-      // Handle incoming audio data
-      // socket.on("audio_share", function (data) {
-      //   const audio = document.getElementById("audio");
-      //   const audioContext = new (window.AudioContext ||
-      //     window.webkitAudioContext)();
-      //   const source = audioContext.createBufferSource();
-
-      //   fetch("data:audio/wav;base64," + data.audio)
-      //     .then((response) => response.arrayBuffer())
-      //     .then((buffer) => audioContext.decodeAudioData(buffer))
-      //     .then((decodedData) => {
-      //       source.buffer = decodedData;
-      //       source.connect(audioContext.destination);
-      //       source.start(0);
-      //     })
-      //     .catch((e) => console.error("Error with decoding audio data", e));
-      // });
 
       document
         .getElementById("screen")

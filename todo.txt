@@ -3,11 +3,14 @@ ok-change mouse klik to use microcontroller
 ok-try mouse move with microccontroller, win32 api can handle it
 ok-fix keyboard cant type capital 
 
-- add enter function on keyboard   
-- add right clilck function on mouse
-- add backspace function on keyboard
+ok- add enter function on keyboard   
+ok- add right clilck function on mouse
+ok- add backspace+escape function on keyboard
 
 
+
+
+#Improvement
 Client
 -reove pc selection and password input page
 -use apikey on get param as authentication system

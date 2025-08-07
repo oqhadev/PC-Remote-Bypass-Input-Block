@@ -19,7 +19,7 @@ password = '1'
 enable_move = True
 enable_click = True
 enable_keyboard = True
-current_fps = 5 
+current_fps = 1 
 
 fps = lambda fps: 1/60 if fps > 60 else (1 if fps < 1 else 1/fps)
 
@@ -90,9 +90,8 @@ def on_remote_control(data):
             button = data['button']
             if button == 'left':
                 serialPort.write(b"klik\r\n")
-                # pyautogui.click(x, y, button='left')
             elif button == 'right':
-                pyautogui.click(x, y, button='right')
+                serialPort.write(b"krik\r\n")
         elif control_type == 'keypress' and enable_keyboard:
             key = data['key']
             print(key)
@@ -100,7 +99,10 @@ def on_remote_control(data):
                 serialPort.write(f"write {key}\r\n".encode('utf-8'))
             if key == 'Enter':
                 serialPort.write(b"enter\r\n")
-
+            if key == 'Backspace':
+                serialPort.write(b"backspace\r\n")
+            if key == 'Escape':
+                serialPort.write(b"escape\r\n")
             # pyautogui.press(key)
 
 def capture_screen():    
