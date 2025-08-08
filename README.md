@@ -2,6 +2,18 @@
 
 This project implements a simple remote desktop solution using Python, with the ability to bypass GameGuard mouse/keyboard blocks on remote. It allows you to control a remote computer and view its screen.
 
+## Configuration
+
+The application's password and port are configured in `config.ini`.
+
+```ini
+[SERVER]
+password = yourpassword
+port = 3000
+```
+
+You can modify these values to suit your needs.
+
 ## Prerequisites
 
 Before running the application, you need to install the Logitech Gaming Software (LGS) extension.
@@ -13,12 +25,7 @@ Before running the application, you need to install the Logitech Gaming Software
 
 ## Setup and Run
 
-1.  **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/your-username/Python-Remote-Desktop.git
-    cd Python-Remote-Desktop
-    ```
+1.  **Clone or Download the repository:**
 
 2.  **Install Python dependencies:**
 
@@ -36,9 +43,10 @@ Before running the application, you need to install the Logitech Gaming Software
 
 ## Usage
 
-Once the server is running, open your web browser and navigate to `http://localhost:3000/?password=your_password&fps=your_fps`.
+Once the server is running, open your web browser and navigate to `http://localhost:PORT/?password=YOUR_PASSWORD&fps=your_fps`.
 
-*   Replace `your_password` with the password configured in `app.py` (default is `asd`).
-*   Replace `your_fps` with the desired frames per second for screen sharing (e.g., `10` for 10 FPS).
+- Replace `PORT` with the port configured in `config.ini` (default is `3000`).
+- Replace `YOUR_PASSWORD` with the password configured in `config.ini` (default is `yourpassword`).
+- Replace `your_fps` with the desired frames per second for screen sharing (e.g., `10` for 10 FPS).
 
 You can then interact with the remote desktop through the web interface.

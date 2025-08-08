@@ -4,6 +4,7 @@ import base64
 import io
 import asyncio
 from aiohttp import web
+import configparser
 from lib.ibinputsimulator import (
     init_simulator,
     simulate_left_click,
@@ -22,7 +23,12 @@ app= web.Application()
 sio.attach(app)
 
 connected_client = None
-password_client='asd'
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+password_client = config['SERVER']['password']
+port = int(config['SERVER']['port'])
 
 @sio.event
 async def connect(sid, environ, auth):
@@ -125,7 +131,7 @@ def main():
     app.on_startup.append(start_background_tasks)
     app.router.add_get('/', index)
     app.router.add_static('/', './public')
-    web.run_app(app, port=3000)
+    web.run_app(app, port=port)
 
 if __name__ == '__main__':
         main()
