@@ -2,3 +2,4 @@ python-socketio
 pyautogui
 aiohttp
 configparser
+pyinstaller

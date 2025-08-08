@@ -119,7 +119,17 @@ async def start_background_tasks(app):
     print("Server has started up. Starting background task...")
     sio.start_background_task(capture_screen)
 
+import os
+
 def main():
+    os.system("title PC Remote Bypass Input Block")
+    print("\n")
+    print("==========================================================")
+    print("  PC Remote Bypass Input Block")
+    print("  by OqhaDev")
+    print("  this project is part of potatoLiteRagBOT")
+    print("==========================================================")
+    print("\n")
     print("Starting the server...")
 
     init_result = init_simulator(SendType.Logitech)

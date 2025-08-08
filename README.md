@@ -25,21 +25,7 @@ Before running the application, you need to install the Logitech Gaming Software
 
 ## Setup and Run
 
-1.  **Clone or Download the repository:**
-
-2.  **Install Python dependencies:**
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-3.  **Run the application:**
-
-    ```bash
-    python app.py
-    ```
-
-    The server will start on `http://localhost:3000`.
+Download the latest release from [https://github.com/oqhadev/PC-Remote-Bypass-Input-Block/releases](https://github.com/oqhadev/PC-Remote-Bypass-Input-Block/releases).
 
 ## Usage
 
