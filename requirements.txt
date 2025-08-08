@@ -1,0 +1,5 @@
+python-socketio
+pyserial
+eventlet
+pyautogui
+aiohttp

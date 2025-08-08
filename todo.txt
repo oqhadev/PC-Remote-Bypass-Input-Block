@@ -1,10 +1,6 @@
-- change the alogritma of socket, this index.js currenly can have multiple host, i need just 1 host
-    add socket server on host.py, and add webserver for view 
-    i dont want index.js, since this program is used by 1 host 1 client
--remove (index.html) pc selection and password input page, (related to above)
--add apikey on url param as authentication 
--add fps configuration on url param
--add pip requirement.txt file
+-fix space keyboard (done on mc, not done on this app)
+-move bot shortcut home and end to ctrl r and ctrl s 
+-update pip requirement.txt file
 -add compile this program to .exe
     create build.bat (refrence on potatolite bot)
 -add config.ini the value is password/apikey, host and port
