@@ -1,9 +1,30 @@
--fix space keyboard (done on mc, not done on this app)
--move bot shortcut home and end to ctrl r and ctrl s 
--update pip requirement.txt file
 -add compile this program to .exe
     create build.bat (refrence on potatolite bot)
 -add config.ini the value is password/apikey,port,comport
     ask in console if not valid or empty
 
- 
+
+   
+    
+     
+      
+       
+            
+
+
+
+
+
+               
+
+
+     
+                  
+
+
+
+
+                    
+
+
+

@@ -33,14 +33,11 @@
 
       // Get the current URL
       const currentUrl = window.location.href;
-      const password = currentUrl.split('?')[1];
 
 
-      console.log('Password:', password);
 
       let width = 1920;
       let height = 1080;
-      socket.emit("password", {  password: password });
       socket.on("screen_size",function(data) {
         width = data.width;
         height = data.height;
@@ -68,7 +65,6 @@
       });
 
       socket.on("screen_share", function (data) {
-        console.log('Received screen share ');
         var screen = document.getElementById("screen");
         if (data.image) {
           screen.src = "data:image/jpeg;base64," + data.image;
@@ -99,7 +95,6 @@
             x: scaledCoords.x,
             y: scaledCoords.y,
             button: buttonType,
-            password: password,
           });
         });
 
@@ -124,7 +119,6 @@
             type: "mouse_move",
             x: scaledCoords.x,
             y: scaledCoords.y,
-            password: password,
           });
         });
 
@@ -151,17 +145,16 @@
             x: scaledCoords.x,
             y: scaledCoords.y,
             button: "right",
-            password: password,
           });
         });
 
       document.addEventListener("keypress", function (event) {
-        console.log('Key pressed:', event);
         const key = event.key;
+        const ctrlKey = event.ctrlKey;
         socket.emit("remote_control", {
           type: "keypress",
           key: key,
-          password: password,
+          ctrl: ctrlKey,
         });
       });
 
@@ -192,7 +185,6 @@
               x: scaledCoords.x,
               y: scaledCoords.y,
               button: "left",
-              password: password,
             });
           } else if (touches.length === 2) {
             // Two finger touch - right click
@@ -201,7 +193,6 @@
               x: scaledCoords.x,
               y: scaledCoords.y,
               button: "right",
-              password: password,
             });
           }
         });

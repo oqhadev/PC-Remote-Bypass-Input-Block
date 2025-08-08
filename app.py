@@ -2,14 +2,17 @@ import socketio
 import pyautogui
 import base64
 import io
-import serial
 import asyncio
 from aiohttp import web
-
-
-serialPort = serial.Serial(
-    port='COM8', baudrate=9600, bytesize=8, timeout=2, stopbits=serial.STOPBITS_ONE
+from lib.ibinputsimulator import (
+    init_simulator,
+    simulate_left_click,
+    simulate_right_click,
+    simulate_key_down_up,
+    SendType,
+    VK
 )
+
 
 fps = lambda fps: 1/60 if fps > 60 else (1 if fps < 1 else 1/fps)
 current_fps = 1 
@@ -52,20 +55,24 @@ async def on_remote_control(sid, data):
         if control_type == 'mouse_click':
             button = data['button']
             if button == 'left':
-                serialPort.write(b"klik\r\n")
+                simulate_left_click()
             elif button == 'right':
-                serialPort.write(b"krik\r\n")
+                simulate_right_click()
         if control_type == 'keypress':
             key = data['key']
-            print(key)
             if len(key) == 1:
-                serialPort.write(f"write {key}\r\n".encode('utf-8'))
+                if data['ctrl'] and key.lower() == 's':
+                    simulate_key_down_up(VK.END)
+                elif data['ctrl'] and key.lower() == 'r':
+                    simulate_key_down_up(VK.HOME)
+                else:
+                    simulate_key_down_up(ord(key.upper()), shift=key.isupper(), ctrl=data.get('ctrl', False))
             if key == 'Enter':
-                serialPort.write(b"enter\r\n")
+                simulate_key_down_up(VK.RETURN)
             elif key == 'Backspace':
-                serialPort.write(b"backspace\r\n")
+                simulate_key_down_up(VK.BACK)
             elif key == 'Escape':
-                serialPort.write(b"escape\r\n")
+                simulate_key_down_up(VK.ESCAPE)
 
 async def capture_screen():
 
@@ -73,22 +80,16 @@ async def capture_screen():
             if connected_client:
                 screen = pyautogui.screenshot()
                 img_bytes = io.BytesIO()
-                screen.save(img_bytes, format='JPEG',quality=85)
+                screen.save(img_bytes, format='JPEG',quality=10)
             
                 img_data=base64.b64encode(img_bytes.getvalue()).decode('utf-8')
                     
                 await sio.emit('screen_share', {'image': img_data},room=connected_client)
-                print(f"Screen shared to {connected_client} at fps {current_fps}")  # Print first 30 chars of image data
 
                 await asyncio.sleep(fps(current_fps)) # Wait before retrying
             else:
                 await asyncio.sleep(1) # Wait before retrying
 
-
-#debug only
-@sio.on('*')
-def any_event(event, sid, data):
-    print(f"Received event: {event} with data: {data} from sid: {sid}")
 
 async def index(request):
     global password_client
@@ -107,12 +108,20 @@ async def index(request):
             return web.Response(text=f.read(), content_type='text/html')
     except FileNotFoundError:
             return web.Response(text="index.html not found", status=404)
+
 async def start_background_tasks(app):
     print("Server has started up. Starting background task...")
     sio.start_background_task(capture_screen)
 
 def main():
     print("Starting the server...")
+
+    init_result = init_simulator(SendType.Logitech)
+    if init_result >= 0:
+        print("Input simulator initialized successfully.")
+    else:
+        print("Failed to initialize input simulator.")
+
     app.on_startup.append(start_background_tasks)
     app.router.add_get('/', index)
     app.router.add_static('/', './public')
