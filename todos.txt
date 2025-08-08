@@ -1,0 +1,5 @@
+- add more readable readme
+- add information of working and not working in readme
+- add better console output on startup. read ip lan and auto show on console with password 
+   ex. access with http://192.168.1.1:3000?password=yourpassword&fps=1
+- compress/minify index.html value, change name to 'view'
