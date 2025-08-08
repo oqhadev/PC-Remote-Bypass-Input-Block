@@ -3,8 +3,7 @@
 -update pip requirement.txt file
 -add compile this program to .exe
     create build.bat (refrence on potatolite bot)
--add config.ini the value is password/apikey, host and port
+-add config.ini the value is password/apikey,port,comport
     ask in console if not valid or empty
-    auto move port if used (n+10 logic)
 
  
