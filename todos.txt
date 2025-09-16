@@ -1,3 +1,6 @@
+- add refresh on client every 1 hours
+- on client, add button home and end, also button to open text and input cmd command to run on server
+- auto startup
 - add more readable readme
 - add information of working and not working in readme
 - add better console output on startup. read ip lan and auto show on console with password 
