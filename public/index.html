@@ -41,6 +41,12 @@
       socket.on("screen_size",function(data) {
         width = data.width;
         height = data.height;
+
+        // auto reload every 30 minutes
+        setTimeout(() => {
+          location.reload();
+        }, 1800000); // 30 minutes in milliseconds
+
       });
 
       socket.on("alert",function(data) {
