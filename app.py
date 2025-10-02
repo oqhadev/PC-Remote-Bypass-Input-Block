@@ -96,6 +96,9 @@ async def capture_screen():
             else:
                 await asyncio.sleep(1) # Wait before retrying
 
+async def alert(request):
+        await sio.emit('alert', 'alert',room=connected_client)
+        return web.Response(text="Alert sent", status=200) 
 
 async def index(request):
     global password_client
@@ -141,6 +144,7 @@ def main():
     app.on_startup.append(start_background_tasks)
     app.router.add_get('/', index)
     app.router.add_static('/', './public')
+    app.router.add_get('/alert', alert)
     web.run_app(app, port=port)
 
 if __name__ == '__main__':

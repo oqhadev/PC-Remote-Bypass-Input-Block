@@ -42,6 +42,30 @@
         width = data.width;
         height = data.height;
       });
+
+      socket.on("alert",function(data) {
+        blinkHideShow('screen', 20, 200);
+      });
+
+
+      function blinkHideShow(elementId, times = 3, interval = 200) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        let count = 0;
+        let visible = true;
+
+        const blink = setInterval(() => {
+          el.style.display = visible ? 'none' : 'block';
+          visible = !visible;
+          count++;
+          if (count >= times * 2) {
+            clearInterval(blink);
+            el.style.display = 'block'; // Ensure visible at end
+          }
+        }, interval);
+      }
+
+// Usage: blinkHideShow('screen', 3, 200);
       // Function to scale mouse coordinates based on the server's resolution
       function scaleCoordinates(
         x,
