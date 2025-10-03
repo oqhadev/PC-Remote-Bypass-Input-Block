@@ -23,6 +23,38 @@
     </style>
   </head>
   <body>
+    <div  style="
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      border: none;
+    ">
+      <button id="homeBtn" style="
+        z-index: 1000;
+        padding: 10px 20px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0.5;
+      ">
+        HOME
+      </button>
+      <button id="endBtn" style="
+        z-index: 1000;
+        padding: 10px 20px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0.5;
+      ">
+        END
+      </button>
+    </div>
     <img id="screen" />
     <audio id="audio" controls style="display: none"></audio>
     <script type="text/javascript">
@@ -52,6 +84,22 @@
       socket.on("alert",function(data) {
         blinkHideShow('screen', 20, 200);
       });
+      document.getElementById("homeBtn").addEventListener("click", function() {
+        socket.emit("remote_control", {
+          type: "keypress",
+          key: 'r',
+          ctrl: true,
+        });
+      });
+
+      document.getElementById("endBtn").addEventListener("click", function() {
+        socket.emit("remote_control", {
+          type: "keypress",
+          key: 's',
+          ctrl: true,
+        });
+      });
+
 
 
       function blinkHideShow(elementId, times = 3, interval = 200) {
